@@ -5,8 +5,8 @@ import { Button } from "react-bootstrap";
 
 export const NavBarCom = () => {
   const [isLogin, setIsLogIn] = useState(false);
-  const handleLogin = () => setIsLogIn("true");
-  const handleLogout = () => setIsLogIn("false");
+  const handleLogin = () => setIsLogIn(true);
+  const handleLogout = () => setIsLogIn(false);
 
   return (
     <div>
