@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [final, setFinal] = useState("");
   const [error, setError] = useState("");
+  const navigate = useNavigate()
 
   useEffect(() => {
     setFinal({ name, email });
@@ -24,10 +26,10 @@ const Login = () => {
     console.log(final);
     setEmail("");
     setName("");
-
     if (name === "" || email === "") {
       setError("All Fields Are Required");
     }
+    navigate("/home")
   };
 
   return (
