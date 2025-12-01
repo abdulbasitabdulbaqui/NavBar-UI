@@ -2,10 +2,16 @@ import React, { useState } from "react";
 import { Navbar, Nav } from "react-bootstrap";
 import { Container } from "react-bootstrap";
 import { Button } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
+import Login from "./Login";
 
 export const NavBarCom = () => {
   const [isLogin, setIsLogIn] = useState(false);
-  const handleLogin = () => setIsLogIn(true);
+  const navigate = useNavigate();
+  const handleLogin = () => {
+    navigate("/login");
+    setIsLogIn(true);
+  };
   const handleLogout = () => setIsLogIn(false);
 
   return (

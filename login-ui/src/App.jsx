@@ -5,6 +5,8 @@ import Home from "./components/Home";
 import NavBarCom from "./components/NavBarCom"
 import About from "./components/About"
 import Contact from "./components/Contact"
+import Login from "./components/Login";
+import './App.css'
 const App = () => {
   return (
     <div>
@@ -13,7 +15,8 @@ const App = () => {
         <Route path="/home" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
-      </Routes>
+        <Route path="/login" element={<Login />} />
+      </Routes> 
     </div>
   );
 };
