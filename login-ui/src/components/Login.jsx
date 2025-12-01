@@ -7,7 +7,8 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [final, setFinal] = useState("");
   const [error, setError] = useState("");
-  const navigate = useNavigate()
+ 
+  const navigate = useNavigate();
 
   useEffect(() => {
     setFinal({ name, email });
@@ -28,8 +29,13 @@ const Login = () => {
     setName("");
     if (name === "" || email === "") {
       setError("All Fields Are Required");
+    } else {
+      navigate("/home");
     }
-    navigate("/home")
+    localStorage.setItem("isLogin", true);
+    const getItem = localStorage.getItem("isLogin");
+    console.log(getItem);
+   
   };
 
   return (
@@ -44,6 +50,7 @@ const Login = () => {
           height: "500px",
           border: "none",
           borderRadius: "50px",
+          padding:"25px"
         }}
       >
         <div className="w-100" style={{ marginTop: "60px" }}>
@@ -58,6 +65,7 @@ const Login = () => {
             placeholder="ENTER YOUR NAME"
             onChange={handleName}
             value={name}
+             className="w-100"  
           />
 
           <p style={{ color: "red" }}>{error}</p>
@@ -69,6 +77,7 @@ const Login = () => {
             placeholder="ENTER YOUR EMAIL"
             onChange={handleEmail}
             value={email}
+             className="w-100"
           />
 
           <p style={{ color: "red" }}>{error}</p>
@@ -77,10 +86,11 @@ const Login = () => {
             <Button
               style={{ marginLeft: "10px", width: "50%", padding: "10px" }}
               onClick={handleSubmit}
-              className="w-50"
+              className="w-75"
             >
               SUBMIT
             </Button>
+            
           </div>
         </div>
       </div>

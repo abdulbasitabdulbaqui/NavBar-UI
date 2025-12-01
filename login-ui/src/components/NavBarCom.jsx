@@ -11,7 +11,8 @@ export const NavBarCom = () => {
   const handleLogin = () => {
     navigate("/login");
     setIsLogIn(true);
-  };
+  }
+
   const handleLogout = () => setIsLogIn(false);
 
   return (
