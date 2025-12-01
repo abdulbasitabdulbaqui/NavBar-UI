@@ -1,11 +1,24 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
-import Layout from "./components/Layout";
+import Home from "./components/Home";
+import Contact from "./components/Contact";
+import About from "./components/About";
+import Login from "./components/Login";
+import NavBarCom from "./components/NavBarCom";
+import { Routes, Route, useLocation } from "react-router-dom";
 const App = () => {
+  const location = useLocation();
+
   return (
     <div>
-      <Layout />
+      {location.pathname !== "/login" && <NavBarCom />}
+      <Routes>
+        <Route path="/home" element={<Home />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/login" element={<Login />} />
+      </Routes>
     </div>
   );
 };
