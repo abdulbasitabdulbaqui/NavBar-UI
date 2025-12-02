@@ -26,8 +26,8 @@ export const NavBarCom = () => {
 
   return (
     <div>
-      <Navbar bg="dark" data-bs-theme="dark" className="ms-5 me-5 mt-2" >
-        <Container fluid style={{ width: "100%" }}>
+      <Navbar bg="dark" data-bs-theme="dark" >
+        <Container fluid style={{ width: "95%" }}>
           <Navbar.Brand href="#home">E-Commerce</Navbar.Brand>
           <Navbar.Toggle aria-controls="main-navbar" />
           <Navbar.Collapse
