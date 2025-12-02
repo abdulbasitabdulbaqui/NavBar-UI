@@ -4,16 +4,25 @@ import { Container } from "react-bootstrap";
 import { Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import Login from "./Login";
-
+import { useEffect } from "react";
 export const NavBarCom = () => {
   const [isLogin, setIsLogIn] = useState(false);
   const navigate = useNavigate();
   const handleLogin = () => {
     navigate("/login");
+    localStorage.setItem("isLogin", "true");
     setIsLogIn(true);
-  }
+  };
 
-  const handleLogout = () => setIsLogIn(false);
+  const handleLogout = () => {
+    localStorage.removeItem("isLogin");
+    localStorage.getItem("isLogin");
+    setIsLogIn(false);
+  };
+  useEffect(() => {
+    const status = localStorage.getItem("isLogin");
+    setIsLogIn(status === "true");
+  }, []);
 
   return (
     <div>
