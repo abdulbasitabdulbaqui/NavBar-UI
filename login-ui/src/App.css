@@ -1,0 +1,15 @@
+<<<<<<< HEAD
+=======
+body, html {
+  margin: 0 !important;
+  padding: 0 !important;
+  width: 100% !important;
+  overflow-x: hidden;
+}
+
+#root {
+  margin: 0 !important;
+  padding: 0 !important;
+  width: 100% !important;
+}
+>>>>>>> 2fde4a5e07b70e98122f373dd136195df32ddd55
