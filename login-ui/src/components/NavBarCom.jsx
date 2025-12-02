@@ -26,7 +26,7 @@ export const NavBarCom = () => {
 
   return (
     <div>
-      <Navbar bg="dark" data-bs-theme="dark" >
+      <Navbar bg="dark" data-bs-theme="dark" className="ms-5 me-5 mt-2" >
         <Container fluid style={{ width: "100%" }}>
           <Navbar.Brand href="#home">E-Commerce</Navbar.Brand>
           <Navbar.Toggle aria-controls="main-navbar" />
@@ -34,7 +34,7 @@ export const NavBarCom = () => {
             id="main-navbar"
             className="d-flex justify-content-between"
           >
-            <Nav className="me-auto">
+            <Nav className="me-auto" >
               <Nav.Link href="/home">Home</Nav.Link>
               <Nav.Link href="/about">About</Nav.Link>
               <Nav.Link href="/contact">Contact</Nav.Link>
