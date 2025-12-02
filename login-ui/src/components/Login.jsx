@@ -7,7 +7,7 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [final, setFinal] = useState("");
   const [error, setError] = useState("");
- 
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -35,24 +35,14 @@ const Login = () => {
     localStorage.setItem("isLogin", true);
     const getItem = localStorage.getItem("isLogin");
     console.log(getItem);
-   
   };
 
   return (
     <div
-      style={{ backgroundColor: "#001F3F", height: "600px", width: "100%" }}
+      style={{ height: "600px", width: "100%" }}
       className="d-flex justify-content-center align-items-center"
     >
-      <div
-        className="d-flex justify-content-center col-11 col-sm-10 col-md-8 col-lg-6 col-xl-4"
-        style={{
-          backgroundColor: "silver",
-          height: "500px",
-          border: "none",
-          borderRadius: "50px",
-          padding:"25px"
-        }}
-      >
+      <div className="d-flex justify-content-center col-11 col-sm-10 col-md-8 col-lg-6 col-xl-4 shadow p-3 mb-5 bg-white rounded shadow-lg ">
         <div className="w-100" style={{ marginTop: "60px" }}>
           <div style={{ textAlign: "center" }}>
             <h1>LOGIN PAGE</h1>
@@ -60,37 +50,32 @@ const Login = () => {
 
           <label>NAME:</label>
           <input
-            style={{ margin: "10px", padding: "10px", width: "90%" }}
+            style={{ margin: "8px", padding: "10px", width: "90%" }}
             type="text"
             placeholder="ENTER YOUR NAME"
             onChange={handleName}
             value={name}
-             className="w-100"  
+            className="w-100"
           />
 
           <p style={{ color: "red" }}>{error}</p>
 
           <label>EMAIL:</label>
           <input
-            style={{ margin: "10px", padding: "10px", width: "90%" }}
+            style={{ margin: "8px", padding: "10px", width: "90%" }}
             type="text"
             placeholder="ENTER YOUR EMAIL"
             onChange={handleEmail}
             value={email}
-             className="w-100"
+            className="w-100"
           />
 
           <p style={{ color: "red" }}>{error}</p>
 
           <div>
-            <Button
-              style={{ marginLeft: "10px", width: "50%", padding: "10px" }}
-              onClick={handleSubmit}
-              className="w-75"
-            >
+            <Button onClick={handleSubmit} className="w-75 mx-5">
               SUBMIT
             </Button>
-            
           </div>
         </div>
       </div>
