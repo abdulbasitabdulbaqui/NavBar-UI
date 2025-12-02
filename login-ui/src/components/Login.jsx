@@ -24,15 +24,20 @@ const Login = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(final);
-    setEmail("");
-    setName("");
+   
     if (name === "" || email === "") {
       setError("All Fields Are Required");
-    } else {
-      navigate("/home");
+      return;
     }
-    
+    if (name.length < 3) {
+      setError("Min charachter should be 3");
+
+      return;
+    }
+     console.log(final);
+    setEmail("");
+    setName("");
+    navigate("/home");
   };
 
   return (
@@ -46,7 +51,7 @@ const Login = () => {
             <h1>LOGIN PAGE</h1>
           </div>
 
-          <label>NAME:</label>
+          <label>USERNAME:</label>
           <input
             style={{ margin: "8px", padding: "10px", width: "90%" }}
             type="text"
@@ -57,8 +62,9 @@ const Login = () => {
           />
 
           <p style={{ color: "red" }}>{error}</p>
+           
 
-          <label>EMAIL:</label>
+          <label>PASSWORD:</label>
           <input
             style={{ margin: "8px", padding: "10px", width: "90%" }}
             type="text"
@@ -69,6 +75,7 @@ const Login = () => {
           />
 
           <p style={{ color: "red" }}>{error}</p>
+       
 
           <div>
             <Button onClick={handleSubmit} className="w-75 mx-5">
