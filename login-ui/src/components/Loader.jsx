@@ -2,8 +2,8 @@ import React from 'react'
 import "./Loader.css";
 const Loader = () => {
   return (
-    <div>
-<div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
+    <div className='load'>
+<h3>LOADING PRODUCTS...</h3>
     </div>
   )
 }
