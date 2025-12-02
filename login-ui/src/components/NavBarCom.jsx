@@ -27,7 +27,7 @@ export const NavBarCom = () => {
   return (
     <div>
       <Navbar bg="dark" data-bs-theme="dark">
-        <Container style={{ width: "100%" }}>
+        <Container fluid>
           <Navbar.Brand href="#home">E-Commerce</Navbar.Brand>
           <Navbar.Toggle aria-controls="main-navbar" />
           <Navbar.Collapse
