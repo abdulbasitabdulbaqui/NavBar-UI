@@ -32,9 +32,7 @@ const Login = () => {
     } else {
       navigate("/home");
     }
-    localStorage.setItem("isLogin", true);
-    const getItem = localStorage.getItem("isLogin");
-    console.log(getItem);
+    
   };
 
   return (

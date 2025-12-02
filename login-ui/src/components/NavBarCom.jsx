@@ -15,7 +15,7 @@ export const NavBarCom = () => {
   };
 
   const handleLogout = () => {
-    localStorage.removeItem("isLogin");
+        
     localStorage.getItem("isLogin");
     setIsLogIn(false);
   };
