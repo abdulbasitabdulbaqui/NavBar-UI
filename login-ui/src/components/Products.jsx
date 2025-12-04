@@ -49,6 +49,13 @@ const Products = () => {
       </p>
     );
   }
+  const pageNumbers = Array.from({ length: totalPages }, (_, i) => i + 1);
+
+  // current group ka index
+  const groupIndex = Math.floor((currentPage - 1) / 5);
+
+  // slice me sirf 5 button ek group ke
+  const visibleButtons = pageNumbers.slice(groupIndex * 5, groupIndex * 5 + 5);
   return (
     <div className="container mt-4">
       <h1 className="text-center mb-4">Product List:</h1>
@@ -81,20 +88,20 @@ const Products = () => {
           <Button
             as="button"
             disabled={currentPage === 1}
-            className="Success mb-2 btn "
+            className="Success btn"
             variant="success"
             onClick={() => handlePage(currentPage - 1)}
           >
             PREV
           </Button>
-          {Array.from({ length: totalPages }, (_, index) => (
+
+          {visibleButtons.map((num) => (
             <Button
-              as="button"
-              key={index}
-              onClick={() => handlePage(index + 1)}
-              className={currentPage === index + 1 ? "active" : ""}
+              key={num}
+              onClick={() => handlePage(num)}
+              className={currentPage === num ? "active" : ""}
             >
-              {index + 1}
+              {num}
             </Button>
           ))}
 
