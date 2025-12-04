@@ -10,12 +10,12 @@ export const NavBarCom = () => {
   const navigate = useNavigate();
   const handleLogin = () => {
     localStorage.setItem("isLogin", "true");
-    setIsLogIn(true);
-    navigate("/login");
+    setIsLogIn(false);
+      navigate("/login")
   };
 
   const handleLogout = () => {
-  localStorage.removeItem("isLogin");
+    localStorage.removeItem("isLogin");
     setIsLogIn(false);
   };
   useEffect(() => {
@@ -36,7 +36,7 @@ export const NavBarCom = () => {
             <Nav className="me-auto">
               <Nav.Link href="/home">Home</Nav.Link>
               <Nav.Link href="/about">About</Nav.Link>
-              <Nav.Link href="/products">Products</Nav.Link>
+              {isLogin  && <Nav.Link href="/products">Products</Nav.Link>}
             </Nav>
             {!isLogin && (
               <Button onClick={handleLogin} style={{ marginRight: "20px" }}>
