@@ -6,6 +6,8 @@ const Login = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [final, setFinal] = useState("");
+  const [nameError, setNameError] = useState("");
+  const [emailError, setEmailError] = useState("");
   const [error, setError] = useState("");
 
   const navigate = useNavigate();
@@ -24,17 +26,22 @@ const Login = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-   
+
     if (name === "" || email === "") {
       setError("All Fields Are Required");
       return;
     }
     if (name.length < 3) {
-      setError("Min charachter should be 3");
+      setNameError("Min charachter of name should be 3");
 
       return;
     }
-     console.log(final);
+    if (email.length < 3) {
+      setEmailError("Min charachter of email should be 3");
+
+      return;
+    }
+    console.log(final);
     setEmail("");
     setName("");
     navigate("/home");
@@ -61,8 +68,8 @@ const Login = () => {
             className="w-100"
           />
 
+          <p style={{ color: "red" }}>{nameError}</p>
           <p style={{ color: "red" }}>{error}</p>
-           
 
           <label>PASSWORD:</label>
           <input
@@ -73,9 +80,8 @@ const Login = () => {
             value={email}
             className="w-100"
           />
-
           <p style={{ color: "red" }}>{error}</p>
-       
+          <p style={{ color: "red" }}>{emailError}</p>
 
           <div>
             <Button onClick={handleSubmit} className="w-75 mx-5">
