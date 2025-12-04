@@ -9,9 +9,10 @@ export const NavBarCom = () => {
   const [isLogin, setIsLogIn] = useState(false);
   const navigate = useNavigate();
   const handleLogin = () => {
-    navigate("/login");
+    
     localStorage.setItem("isLogin", "true");
     setIsLogIn(false);
+    navigate("/login");
   };
 
   const handleLogout = () => {
