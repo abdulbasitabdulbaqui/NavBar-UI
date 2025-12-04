@@ -11,7 +11,7 @@ export const NavBarCom = () => {
   const handleLogin = () => {
     navigate("/login");
     localStorage.setItem("isLogin", "true");
-    setIsLogIn(true);
+    setIsLogIn(false);
   };
 
   const handleLogout = () => {
