@@ -9,15 +9,13 @@ export const NavBarCom = () => {
   const [isLogin, setIsLogIn] = useState(false);
   const navigate = useNavigate();
   const handleLogin = () => {
-    
     localStorage.setItem("isLogin", "true");
-    setIsLogIn(false);
+    setIsLogIn(true);
     navigate("/login");
   };
 
   const handleLogout = () => {
-        
-    localStorage.getItem("isLogin");
+  localStorage.removeItem("isLogin");
     setIsLogIn(false);
   };
   useEffect(() => {
@@ -35,7 +33,7 @@ export const NavBarCom = () => {
             id="main-navbar"
             className="d-flex justify-content-between"
           >
-            <Nav className="me-auto" >
+            <Nav className="me-auto">
               <Nav.Link href="/home">Home</Nav.Link>
               <Nav.Link href="/about">About</Nav.Link>
               <Nav.Link href="/products">Products</Nav.Link>
