@@ -9,10 +9,11 @@ const Login = () => {
   const [nameError, setNameError] = useState("");
   const [emailError, setEmailError] = useState("");
   const [error, setError] = useState("");
-
-  const navigate = useNavigate();
-
-  useEffect(() => {
+  const [isLogin, setIsLogIn] = useState(
+      localStorage.getItem("isLogin") === "true"
+    );
+const navigate = useNavigate()
+   useEffect(() => {
     setFinal({ name, email });
   }, [name, email]);
 
@@ -25,6 +26,8 @@ const Login = () => {
   };
 
   const handleSubmit = (e) => {
+      localStorage.setItem("isLogin", "true");
+    setIsLogIn(true);
     e.preventDefault();
 
     if (name === "" || email === "") {
