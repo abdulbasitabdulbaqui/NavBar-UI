@@ -69,7 +69,7 @@ const Products = () => {
                 src={res.images[0]}
                 style={{ objectFit: "cover", height: "200px" }}
               />
-              <Card onClick={() => Navigate(`/products/${res.id}`)}>
+              <Card   style={{ cursor: "pointer" }} onClick={() => Navigate(`/products/${res.id}`)}>
                 <Card.Body>
                   <Card.Title>{`Title: ${res.title}`}</Card.Title>
                   <Card.Text>{`Description: ${res.description}`}</Card.Text>
