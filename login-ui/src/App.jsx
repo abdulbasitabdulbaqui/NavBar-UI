@@ -8,6 +8,7 @@ import NavBarCom from "./components/NavBarCom";
 import Products from "./components/Products";
 import { Routes, Route, useLocation } from "react-router-dom";
 import { Navigate } from "react-router-dom";
+import CardDetail from "./components/CardDetail";
 
 const App = () => {
   const location = useLocation();
@@ -22,7 +23,9 @@ const App = () => {
         <Route path="/home" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/products" element={<Products />} />
+         <Route path="/products/:id" element={<CardDetail />} />
         <Route path="/login" element={<Login />} />
+       
       </Routes>
     </div>
   );

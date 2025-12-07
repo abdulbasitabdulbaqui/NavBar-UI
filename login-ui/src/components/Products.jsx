@@ -3,7 +3,7 @@ import { useState } from "react";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { useSearchParams } from "react-router-dom";
+import { Navigate, useNavigate, useSearchParams } from "react-router-dom";
 import Loader from "./Loader";
 const Products = () => {
   const [data, setData] = useState([]);
@@ -16,6 +16,7 @@ const Products = () => {
   const currentItems = data.slice(indexOfFirstItem, indexOfLastItem);
   const totalPages = Math.ceil(data.length / itemsPerPage);
 
+  const Navigate = useNavigate();
   const pagenum = Number(searchParams.get("page")) || 1;
   const handlePage = (pageNumber) => {
     setSearchParams({ page: pageNumber });
@@ -43,11 +44,7 @@ const Products = () => {
     fetchdata();
   }, []);
   if (isLoading) {
-    return (
-      <p>
-        <Loader />
-      </p>
-    );
+    return <Loader />;
   }
   const pageNumbers = Array.from({ length: totalPages }, (_, i) => i + 1);
 
@@ -72,12 +69,14 @@ const Products = () => {
                 src={res.images[0]}
                 style={{ objectFit: "cover", height: "200px" }}
               />
-              <Card.Body>
-                <Card.Title>{`Title: ${res.title}`}</Card.Title>
-                <Card.Text>{`Description: ${res.description}`}</Card.Text>
-                <Card.Text>{`Price: ${res.price}`}</Card.Text>
-                <Button variant="primary">Add to Cart</Button>
-              </Card.Body>
+              <Card onClick={() => Navigate(`/products/${res.id}`)}>
+                <Card.Body>
+                  <Card.Title>{`Title: ${res.title}`}</Card.Title>
+                  <Card.Text>{`Description: ${res.description}`}</Card.Text>
+                  <Card.Text>{`Price: ${res.price}`}</Card.Text>
+                  <Button variant="primary">Add to Cart</Button>
+                </Card.Body>
+              </Card>
             </Card>
           </div>
         ))}
