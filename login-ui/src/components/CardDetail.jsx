@@ -3,13 +3,13 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 
 const CardDetail = () => {
-  const { id } = useParams();
+  const { pid } = useParams();
   const [product, setProduct] = useState(null);
   const [error, setError] = useState("");
 
   const fetchData = async () => {
     try {
-      const res = await axios.get(`https://dummyjson.com/products/${id}`);
+      const res = await axios.get(`https://dummyjson.com/products/${pid}`);
       setProduct(res.data);
     } catch (error) {
       setError("SOMETHING WENT WRONGE");
@@ -18,7 +18,7 @@ const CardDetail = () => {
   
   useEffect(() => {
     fetchData();
-  }, [id]);
+  }, [pid]);
   if (error)
     return (
       <h2 style={{ color: "red" }} className="load">
