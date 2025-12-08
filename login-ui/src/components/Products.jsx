@@ -11,6 +11,7 @@ const Products = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(8);
   const [searchParams, setSearchParams] = useSearchParams();
+  const [error, setError] = useState("");
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentItems = data.slice(indexOfFirstItem, indexOfLastItem);
@@ -29,23 +30,24 @@ const Products = () => {
       setIsLoading(true);
       const data = await fetch("https://dummyjson.com/products?limit=0");
       const res = await data.json();
-      console.log(res);
       setData(res.products);
       setIsLoading(false);
-      return res.products;
-    } catch (err) {
-      console.log(err);
+    } catch (error) {
+      setError("SOMETHING WENT WRONGE");
     }
   };
+
   useEffect(() => {
     setCurrentPage(pagenum);
   }, [pagenum]);
   useEffect(() => {
     fetchdata();
   }, []);
+  if (error) return <h2 style={{color:"red"}} className="load">Error: {error}</h2>;
   if (isLoading) {
     return <Loader />;
   }
+
   const pageNumbers = Array.from({ length: totalPages }, (_, i) => i + 1);
 
   // current group ka index
@@ -63,20 +65,22 @@ const Products = () => {
             className="col-12 col-sm-6 col-md-4 col-lg-3 mb-3 mb-4 "
             key={res.id}
           >
-            <Card className="liftCard" style={{ height: "100%" }}>
+            <Card
+              className="liftCard"
+              style={{ height: "100%", cursor: "pointer" }}
+              onClick={() => Navigate(`/products/${res.id}`)}
+            >
               <Card.Img
                 variant="top"
                 src={res.images[0]}
                 style={{ objectFit: "cover", height: "200px" }}
               />
-              <Card   style={{ cursor: "pointer" }} onClick={() => Navigate(`/products/${res.id}`)}>
-                <Card.Body>
-                  <Card.Title>{`Title: ${res.title}`}</Card.Title>
-                  <Card.Text>{`Description: ${res.description}`}</Card.Text>
-                  <Card.Text>{`Price: ${res.price}`}</Card.Text>
-                  <Button variant="primary">Add to Cart</Button>
-                </Card.Body>
-              </Card>
+              <Card.Body>
+                <Card.Title>{`Title: ${res.title}`}</Card.Title>
+                <Card.Text>{`Description: ${res.description}`}</Card.Text>
+                <Card.Text>{`Price: ${res.price}`}</Card.Text>
+                <Button variant="primary">Add to Cart</Button>
+              </Card.Body>
             </Card>
           </div>
         ))}
