@@ -29,10 +29,10 @@ const CardDetail = () => {
 
   return (
     <div>
-      <h2>{product.title}</h2>
-      <img src={product.images[0]} width={250} />
-      <p>{product.description}</p>
-      <h3>${product.price}</h3>
+      <h2>{product?.title}</h2>
+      <img src={product?.images?.[0]} width={250} />
+      <p>{product?.description}</p>
+      <h3>{product?.price}</h3>
     </div>
   );
 };
