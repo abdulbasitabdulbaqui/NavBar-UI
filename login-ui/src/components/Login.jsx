@@ -47,7 +47,7 @@ const navigate = useNavigate()
     console.log(final);
     setEmail("");
     setName("");
-    navigate("/home");
+    navigate("/");
   };
 
   return (
