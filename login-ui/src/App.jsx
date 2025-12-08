@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import Home from "./components/Home";
-import About from "./components/About";
+
 import Login from "./components/Login";
 import NavBarCom from "./components/NavBarCom";
 import Products from "./components/Products";
@@ -20,12 +20,10 @@ const App = () => {
     <div>
       {location.pathname !== "/login" && <NavBarCom />}
       <Routes>
-        <Route path="/home" element={<Home />} />
-        <Route path="/about" element={<About />} />
+        <Route path="/" element={<Home />} />
         <Route path="/products" element={<Products />} />
-         <Route path="/products/:id" element={<CardDetail />} />
+        <Route path="/products/:pid" element={<CardDetail />} />
         <Route path="/login" element={<Login />} />
-       
       </Routes>
     </div>
   );
