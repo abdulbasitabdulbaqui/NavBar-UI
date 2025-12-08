@@ -25,14 +25,14 @@ export const NavBarCom = () => {
   const handleLogout = () => {
     localStorage.removeItem("isLogin");
     setIsLogIn(false);
-    navigate("/home"); 
+    navigate("/home");
   };
 
   return (
     <div>
       <Navbar bg="dark" data-bs-theme="dark">
         <Container fluid>
-          <Navbar.Brand as={Link} to="/home">
+          <Navbar.Brand as={Link} to="/">
             E-Commerce
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="main-navbar" />
@@ -41,11 +41,8 @@ export const NavBarCom = () => {
             className="d-flex justify-content-between"
           >
             <Nav className="me-auto">
-              <Nav.Link as={Link} to="/home">
+              <Nav.Link as={Link} to="/">
                 Home
-              </Nav.Link>
-              <Nav.Link as={Link} to="/about">
-                About
               </Nav.Link>
               <Nav.Link as={Link} to={!isLogin ? "/login" : "/products"}>
                 Products
