@@ -33,7 +33,7 @@ const Products = () => {
       setData(res.products);
       setIsLoading(false);
     } catch (error) {
-      setError("NOT FOUND");
+      setError("SOMETHING WENT WRONGE");
     }
   };
 
@@ -43,7 +43,7 @@ const Products = () => {
   useEffect(() => {
     fetchdata();
   }, []);
-  if (error) return <h2>Error: {error}</h2>;
+  if (error) return <h2 style={{color:"red"}} className="load">Error: {error}</h2>;
   if (isLoading) {
     return <Loader />;
   }

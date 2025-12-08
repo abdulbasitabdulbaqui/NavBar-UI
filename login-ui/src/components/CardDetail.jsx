@@ -13,13 +13,13 @@
           const res = await axios.get(`https://dummyjson.com/products/${id}`);
           setProduct(res.data);
         } catch (error) {
-          setError("NOT FOUND");
+          setError("SOMETHING WENT WRONGE");
         }
       };
       fetchData();
     }, [id]);
-    if (error) return <h2>Error: {error}</h2>;
-    if (!product) return <h2>LOADING</h2>;
+    if (error) return <h2 style={{color:"red"}} className="load">Error: {error}</h2>;
+    if (!product) return <h2 className="load">LOADING.....</h2>;
 
     return (
       <div>
