@@ -9,6 +9,7 @@ import Products from "./components/Products";
 import { Routes, Route, useLocation } from "react-router-dom";
 import { Navigate } from "react-router-dom";
 import CardDetail from "./components/CardDetail";
+import Signup from "./components/Signup";
 
 const App = () => {
   const location = useLocation();
@@ -20,10 +21,11 @@ const App = () => {
     <div>
       {location.pathname !== "/login" && <NavBarCom />}
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/home" element={<Home />} />
         <Route path="/products" element={<Products />} />
         <Route path="/products/:pid" element={<CardDetail />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/Signup" element={<Signup />} />
       </Routes>
     </div>
   );

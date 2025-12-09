@@ -27,8 +27,10 @@ const navigate = useNavigate()
 
   const handleSubmit = (e) => {
       localStorage.setItem("isLogin", "true");
+      window.dispatchEvent(new Event("storage"));
     setIsLogIn(true);
     e.preventDefault();
+     navigate("/");
 
     if (name === "" || email === "") {
       setError("All Fields Are Required");
@@ -46,7 +48,7 @@ const navigate = useNavigate()
     }
     console.log(final);
     setEmail("");
-    setName("");
+    setName("");   
     navigate("/");
   };
 
