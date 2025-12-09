@@ -48,8 +48,8 @@ const navigate = useNavigate()
     }
     console.log(final);
     setEmail("");
-    setName("");
-   
+    setName("");   
+    navigate("/");
   };
 
   return (
