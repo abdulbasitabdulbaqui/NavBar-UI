@@ -30,7 +30,7 @@ const Products = () => {
       setIsLoading(true);
       const data = await fetch("https://dummyjson.com/products?limit=0");
       const res = await data.json();
-      setData(res.products);
+      setData(res?.products);
       setIsLoading(false);
     } catch (error) {
       setError("SOMETHING WENT WRONGE");
@@ -72,13 +72,13 @@ const Products = () => {
             >
               <Card.Img
                 variant="top"
-                src={res.images[0]}
+                src={res?.images[0]}
                 style={{ objectFit: "cover", height: "200px" }}
               />
               <Card.Body>
-                <Card.Title>{`Title: ${res.title}`}</Card.Title>
-                <Card.Text>{`Description: ${res.description}`}</Card.Text>
-                <Card.Text>{`Price: ${res.price}`}</Card.Text>
+                <Card.Title>{`Title: ${res?.title}`}</Card.Title>
+                <Card.Text>{`Description: ${res?.description}`}</Card.Text>
+                <Card.Text>{`Price: ${res?.price}`}</Card.Text>
                 <Button variant="primary">Add to Cart</Button>
               </Card.Body>
             </Card>

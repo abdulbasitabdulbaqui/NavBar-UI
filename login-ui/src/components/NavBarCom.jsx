@@ -6,26 +6,37 @@ import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import Login from "./Login";
 import { useEffect } from "react";
+import Signup from "./Signup";
 export const NavBarCom = () => {
   const [isLogin, setIsLogIn] = useState(
     localStorage.getItem("isLogin") === "true"
   );
   const navigate = useNavigate();
 
-  // useEffect(() => {
-  //   setIsLogIn(localStorage.getItem("isLogin") === "true");
-  // }, []);
+  useEffect(() => {
+    const updateLogin = () => {
+      setIsLogIn(localStorage.getItem("isLogin") === "true");
+    };
+
+    window.addEventListener("storage", updateLogin);
+
+    return () => window.removeEventListener("storage", updateLogin);
+  }, []);
 
   const handleLogin = () => {
-    localStorage.setItem("isLogin", "false");
-    setIsLogIn(true);
     navigate("/login");
+
   };
 
   const handleLogout = () => {
-    localStorage.removeItem("isLogin");
+
     setIsLogIn(false);
-    navigate("/home");
+    navigate("/");
+  };
+
+  const handleSignup = () => {
+    navigate("/signup");
+    window.dispatchEvent(new Event("storage"));
   };
 
   return (
@@ -41,7 +52,7 @@ export const NavBarCom = () => {
             className="d-flex justify-content-between"
           >
             <Nav className="me-auto">
-              <Nav.Link as={Link} to="/">
+              <Nav.Link as={Link} to="/home">
                 Home
               </Nav.Link>
               <Nav.Link as={Link} to={!isLogin ? "/login" : "/products"}>
@@ -49,23 +60,28 @@ export const NavBarCom = () => {
               </Nav.Link>
             </Nav>
             {/* {!isLogin && (
-              <Button onClick={handleLogin} style={{ marginRight: "20px" }}>
-                Login
-              </Button>
-            )}
-            {isLogin && (
-              <Button onClick={handleLogout} style={{ marginRight: "20px" }}>
-                Logout
-              </Button>
-            )} */}
+                <Button onClick={handleLogin} style={{ marginRight: "20px" }}>
+                  Login
+                </Button>
+              )}
+              {isLogin && (
+                <Button onClick={handleLogout} style={{ marginRight: "20px" }}>
+                  Logout
+                </Button>
+              )} */}
             {isLogin ? (
-              <Button onClick={handleLogout} style={{ marginRight: "20px" }}>
-                Logout
-              </Button>
+              <>
+                <Button onClick={handleLogout} style={{ marginRight: "20px" }}>
+                  Logout
+                </Button>
+              </>
             ) : (
-              <Button onClick={handleLogin} style={{ marginRight: "20px" }}>
-                Login
-              </Button>
+              <>
+                <Button onClick={handleLogin} style={{ marginRight: "20px" }}>
+                  Login
+                </Button>
+                <Button onClick={handleSignup}>SignUp</Button>
+              </>
             )}
           </Navbar.Collapse>
         </Container>
