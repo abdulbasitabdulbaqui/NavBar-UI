@@ -5,7 +5,7 @@ import Button from "react-bootstrap/Button";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Navigate, useNavigate, useSearchParams } from "react-router-dom";
 import Loader from "./Loader";
-import "./Products.css";
+import "./products.css";
 
 const Products = () => {
   const [data, setData] = useState([]);
