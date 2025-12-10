@@ -5,8 +5,12 @@ import mateBook from "../assets/mateBook.jpg";
 import familyTree from "../assets/familyTree.jpg";
 import whey from "../assets/whey.png";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 const Home = () => {
+  const [isLogin, setIsLogIn] = useState(
+    localStorage.getItem("isLogin") === "true"
+  );
   // Sample product data - replace with actual data from your API/state
   const featuredProducts = [
     {
@@ -32,9 +36,14 @@ const Home = () => {
     },
     { id: 4, name: "Protein Powder", price: 49.99, image: whey, rating: 4.6 },
   ];
-  const Navigate = useNavigate();
+  const navigate = useNavigate();
+
   const handleBtn = () => {
-    Navigate('/products')
+    if (isLogin) {
+      navigate("/products");
+    } else {
+      navigate("/login");
+    }
   };
   return (
     <div>
@@ -49,7 +58,12 @@ const Home = () => {
                 trends and enjoy free shipping on orders over $50.
               </p>
               <div className="d-flex gap-3">
-                <button onClick={handleBtn} className="btn btn-light btn-lg px-4">Shop Now</button>
+                <button
+                  onClick={handleBtn}
+                  className="btn btn-light btn-lg px-4"
+                >
+                  Shop Now
+                </button>
                 <button className="btn btn-outline-light btn-lg px-4">
                   Learn More
                 </button>
