@@ -21,7 +21,7 @@ const App = () => {
     <div>
       {location.pathname !== "/login" && <NavBarCom />}
       <Routes>
-        <Route path="/home" element={<Home />} />
+        <Route path="/" element={<Home />} />
         <Route path="/products" element={<Products />} />
         <Route path="/products/:pid" element={<CardDetail />} />
         <Route path="/login" element={<Login />} />

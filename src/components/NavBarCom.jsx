@@ -50,7 +50,7 @@ export const NavBarCom = () => {
             className="d-flex justify-content-between"
           >
             <Nav className="me-auto">
-              <Nav.Link as={Link} to="/home">
+              <Nav.Link as={Link} to="/">
                 Home
               </Nav.Link>
               <Nav.Link as={Link} to={!isLogin ? "/login" : "/products"}>
