@@ -28,6 +28,7 @@ export const NavBarCom = () => {
   };
 
   const handleLogout = () => {
+    localStorage.setItem("isLogin", "false");
     setIsLogIn(false);
     navigate("/");
   };
