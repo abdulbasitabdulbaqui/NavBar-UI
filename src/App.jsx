@@ -19,13 +19,13 @@ const App = () => {
 
   return (
     <div>
-      {location.pathname !== "/login" && <NavBarCom />}
+      {!["/login", "/signup"].includes(location.pathname) && <NavBarCom />}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/products" element={<Products />} />
         <Route path="/products/:pid" element={<CardDetail />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/Signup" element={<Signup />} />
+        <Route path="/signup" element={<Signup />} />
       </Routes>
     </div>
   );

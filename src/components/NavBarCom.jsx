@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Navbar, Nav } from "react-bootstrap";
-import { Container } from "react-bootstrap";  
+import { Container } from "react-bootstrap";
 import { Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
@@ -33,10 +33,7 @@ export const NavBarCom = () => {
     navigate("/");
   };
 
-  const handleSignup = () => {
-    navigate("/signup");
-    window.dispatchEvent(new Event("storage"));
-  };
+  
 
   return (
     <div>
@@ -79,7 +76,7 @@ export const NavBarCom = () => {
                 <Button onClick={handleLogin} style={{ marginRight: "20px" }}>
                   Login
                 </Button>
-                <Button onClick={handleSignup}>SignUp</Button>
+            
               </>
             )}
           </Navbar.Collapse>
