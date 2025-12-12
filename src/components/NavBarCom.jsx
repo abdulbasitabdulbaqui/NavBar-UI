@@ -33,8 +33,6 @@ export const NavBarCom = () => {
     navigate("/");
   };
 
-  
-
   return (
     <div>
       <Navbar bg="dark" data-bs-theme="dark">
@@ -54,6 +52,7 @@ export const NavBarCom = () => {
               <Nav.Link as={Link} to={!isLogin ? "/login" : "/products"}>
                 Products
               </Nav.Link>
+              
             </Nav>
             {/* {!isLogin && (
                 <Button onClick={handleLogin} style={{ marginRight: "20px" }}>
@@ -76,9 +75,12 @@ export const NavBarCom = () => {
                 <Button onClick={handleLogin} style={{ marginRight: "20px" }}>
                   Login
                 </Button>
-            
               </>
-            )}
+            )}\
+            
+             <Nav.Link as={Link} to="/cart">
+                {<Button style={{ marginRight: "20px" }}>Cart</Button>}
+              </Nav.Link>
           </Navbar.Collapse>
         </Container>
       </Navbar>
