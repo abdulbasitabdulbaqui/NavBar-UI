@@ -33,7 +33,6 @@ const SignUp = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-   
     setNameError("");
     setEmailError("");
     setPassError("");
@@ -55,14 +54,19 @@ const SignUp = () => {
       setPassError("Min charachter of password should be 3");
       return;
     }
+
     localStorage.setItem("isLogin", "true");
-window.dispatchEvent(new Event("storage"));
- setIsLogIn(true);
+    window.dispatchEvent(new Event("storage"));
+    setIsLogIn(true);
     navigate("/");
     console.log(final);
     setEmail("");
     setName("");
     setPass("");
+  };
+
+  const handleLogin = () => {
+    navigate("/login");
   };
 
   return (
@@ -115,6 +119,12 @@ window.dispatchEvent(new Event("storage"));
             <Button onClick={handleSubmit} className="w-75 mx-5">
               SIGNUP
             </Button>
+            <div style={{ textAlign: "center" }}>
+              <span>Already have an account?</span>&nbsp;
+              <a href="" onClick={handleLogin}>
+                Login
+              </a>
+            </div>
           </div>
         </div>
       </div>

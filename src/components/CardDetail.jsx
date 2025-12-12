@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import { Button } from "react-bootstrap";
 
 const CardDetail = () => {
   const { pid } = useParams();
@@ -33,6 +34,7 @@ const CardDetail = () => {
       <img src={product?.images?.[0]} width={250} />
       <p>{product?.description}</p>
       <h3>{product?.price}</h3>
+       <Button variant="primary">Add to Cart</Button>
     </div>
   );
 };
