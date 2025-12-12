@@ -32,10 +32,8 @@ const SignUp = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-localStorage.setItem("isLogin", "true");
-window.dispatchEvent(new Event("storage"));
-    setIsLogIn(true);
-    navigate("/");
+
+   
     setNameError("");
     setEmailError("");
     setPassError("");
@@ -57,7 +55,10 @@ window.dispatchEvent(new Event("storage"));
       setPassError("Min charachter of password should be 3");
       return;
     }
-    
+    localStorage.setItem("isLogin", "true");
+window.dispatchEvent(new Event("storage"));
+ setIsLogIn(true);
+    navigate("/");
     console.log(final);
     setEmail("");
     setName("");

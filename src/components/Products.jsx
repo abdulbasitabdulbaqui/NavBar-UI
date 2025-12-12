@@ -5,6 +5,8 @@ import Button from "react-bootstrap/Button";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Navigate, useNavigate, useSearchParams } from "react-router-dom";
 import Loader from "./Loader";
+import "./products.css";
+
 const Products = () => {
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -43,7 +45,12 @@ const Products = () => {
   useEffect(() => {
     fetchdata();
   }, []);
-  if (error) return <h2 style={{color:"red"}} className="load">Error: {error}</h2>;
+  if (error)
+    return (
+      <h2 style={{ color: "red" }} className="load">
+        Error: {error}
+      </h2>
+    );
   if (isLoading) {
     return <Loader />;
   }
@@ -79,6 +86,12 @@ const Products = () => {
                 <Card.Title>{`Title: ${res?.title}`}</Card.Title>
                 <Card.Text>{`Description: ${res?.description}`}</Card.Text>
                 <Card.Text>{`Price: ${res?.price}`}</Card.Text>
+                <span className="text-warning">
+                  {"★".repeat(Math.floor(res?.rating))}
+                  {"☆".repeat(5 - Math.floor(res?.rating))}
+                </span>
+                <span className="text-muted ms-2">({res.rating})</span>
+                <br />
                 <Button variant="primary">Add to Cart</Button>
               </Card.Body>
             </Card>
