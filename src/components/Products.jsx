@@ -3,7 +3,7 @@ import { useState } from "react";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Navigate, useNavigate, useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import Loader from "./Loader";
 import "./products.css";
 
@@ -16,10 +16,10 @@ const Products = () => {
   const [error, setError] = useState("");
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentItems = data.slice(indexOfFirstItem, indexOfLastItem);
+  const products = data.slice(indexOfFirstItem, indexOfLastItem);
   const totalPages = Math.ceil(data.length / itemsPerPage);
 
-  const Navigate = useNavigate();
+  const navigate = useNavigate();
   const pagenum = Number(searchParams.get("page")) || 1;
   const handlePage = (pageNumber) => {
     setSearchParams({ page: pageNumber });
@@ -32,11 +32,19 @@ const Products = () => {
       setIsLoading(true);
       const data = await fetch("https://dummyjson.com/products?limit=0");
       const res = await data.json();
+      console.log(res);
       setData(res?.products);
       setIsLoading(false);
     } catch (error) {
       setError("SOMETHING WENT WRONGE");
     }
+  };
+  const handleCart = (product) => {
+    // navigate("/cart");
+    console.log(product);
+    const prod = product;
+    const cardItems = localStorage.getItem("cardItems");
+    localStorage.setItem("cardItems", JSON.stringify[{ ...prod, cardItems }]);
   };
 
   useEffect(() => {
@@ -62,38 +70,40 @@ const Products = () => {
 
   // slice me sirf 5 button ek group ke
   const visibleButtons = pageNumbers.slice(groupIndex * 5, groupIndex * 5 + 5);
+
   return (
     <div className="container mt-4">
       <h1 className="text-center mb-4">Product List:</h1>
 
       <div className="row">
-        {currentItems.map((res) => (
+        {products.map((product) => (
           <div
             className="col-12 col-sm-6 col-md-4 col-lg-3 mb-3 mb-4 "
-            key={res.id}
+            key={product.id}
           >
             <Card
               className="liftCard"
               style={{ height: "100%", cursor: "pointer" }}
-              onClick={() => Navigate(`/products/${res.id}`)}
             >
               <Card.Img
                 variant="top"
-                src={res?.images[0]}
+                src={product?.images[0]}
                 style={{ objectFit: "cover", height: "200px" }}
               />
-              <Card.Body>
-                <Card.Title>{`Title: ${res?.title}`}</Card.Title>
-                <Card.Text>{`Description: ${res?.description}`}</Card.Text>
-                <Card.Text>{`Price: ${res?.price}`}</Card.Text>
+              <Card.Body onClick={() => navigate(`/products/${product.id}`)}>
+                <Card.Title>{`Title: ${product?.title}`}</Card.Title>
+                <Card.Text>{`Description: ${product?.description}`}</Card.Text>
+                <Card.Text>{`Price: ${product?.price}`}</Card.Text>
                 <span className="text-warning">
-                  {"★".repeat(Math.floor(res?.rating))}
-                  {"☆".repeat(5 - Math.floor(res?.rating))}
+                  {"★".repeat(Math.floor(product?.rating))}
+                  {"☆".repeat(5 - Math.floor(product?.rating))}
                 </span>
-                <span className="text-muted ms-2">({res.rating})</span>
+                <span className="text-muted ms-2">({product.rating})</span>
                 <br />
-                <Button variant="primary">Add to Cart</Button>
               </Card.Body>
+              <Button onClick={() => handleCart(product)} variant="primary">
+                Add to Cart
+              </Button>
             </Card>
           </div>
         ))}
