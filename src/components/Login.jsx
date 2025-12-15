@@ -10,10 +10,10 @@ const Login = () => {
   const [emailError, setEmailError] = useState("");
   const [error, setError] = useState("");
   const [isLogin, setIsLogIn] = useState(
-      localStorage.getItem("isLogin") === "true"
-    );
-const navigate = useNavigate()
-   useEffect(() => {
+    localStorage.getItem("isLogin") === "true"
+  );
+  const navigate = useNavigate();
+  useEffect(() => {
     setFinal({ name, email });
   }, [name, email]);
 
@@ -26,9 +26,7 @@ const navigate = useNavigate()
   };
 
   const handleSubmit = (e) => {
-    
     e.preventDefault();
-    
 
     if (name === "" || email === "") {
       setError("All Fields Are Required");
@@ -44,13 +42,16 @@ const navigate = useNavigate()
 
       return;
     }
-      localStorage.setItem("isLogin", "true");
-      window.dispatchEvent(new Event("storage"));
+    localStorage.setItem("isLogin", "true");
+    window.dispatchEvent(new Event("storage"));
     setIsLogIn(true);
     console.log(final);
     setEmail("");
-    setName("");   
+    setName("");
     navigate("/");
+  };
+  const handleSignup = () => {
+    navigate("/signup");
   };
 
   return (
@@ -93,6 +94,11 @@ const navigate = useNavigate()
             <Button onClick={handleSubmit} className="w-75 mx-5">
               SUBMIT
             </Button>
+            <div style={{ textAlign: "center" }}>
+              <a href="" onClick={handleSignup}>
+                SignUp
+              </a>
+            </div>
           </div>
         </div>
       </div>

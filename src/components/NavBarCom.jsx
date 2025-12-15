@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Navbar, Nav } from "react-bootstrap";
-import { Container } from "react-bootstrap";  
+import { Container } from "react-bootstrap";
 import { Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
@@ -28,13 +28,9 @@ export const NavBarCom = () => {
   };
 
   const handleLogout = () => {
+    localStorage.setItem("isLogin", "false");
     setIsLogIn(false);
     navigate("/");
-  };
-
-  const handleSignup = () => {
-    navigate("/signup");
-    window.dispatchEvent(new Event("storage"));
   };
 
   return (
@@ -78,9 +74,12 @@ export const NavBarCom = () => {
                 <Button onClick={handleLogin} style={{ marginRight: "20px" }}>
                   Login
                 </Button>
-                <Button onClick={handleSignup}>SignUp</Button>
               </>
             )}
+            \
+            <Nav.Link as={Link} to="/cart">
+              {<Button style={{ marginRight: "20px" }}>Cart</Button>}
+            </Nav.Link>
           </Navbar.Collapse>
         </Container>
       </Navbar>

@@ -10,6 +10,7 @@ import { Routes, Route, useLocation } from "react-router-dom";
 import { Navigate } from "react-router-dom";
 import CardDetail from "./components/CardDetail";
 import Signup from "./components/Signup";
+import Cart from "./components/Cart";
 
 const App = () => {
   const location = useLocation();
@@ -19,13 +20,14 @@ const App = () => {
 
   return (
     <div>
-      {location.pathname !== "/login" && <NavBarCom />}
+      {!["/login", "/signup"].includes(location.pathname) && <NavBarCom />}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/products" element={<Products />} />
         <Route path="/products/:pid" element={<CardDetail />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/Signup" element={<Signup />} />
+        <Route path="/signup" element={<Signup />} />
+         <Route path="/cart" element={<Cart />} />
       </Routes>
     </div>
   );

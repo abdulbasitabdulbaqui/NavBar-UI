@@ -45,6 +45,13 @@ const Home = () => {
       navigate("/login");
     }
   };
+  const handleCart = () =>{
+ if (isLogin) {
+      navigate("/products");
+    } else {
+      navigate("/login");
+    }
+  }
   return (
     <div>
       {/* Hero Banner */}
@@ -112,7 +119,7 @@ const Home = () => {
                     <p className="card-text fs-4 fw-bold text-primary mb-3">
                       ${product.price}
                     </p>
-                    <button className="btn btn-primary mt-auto">
+                    <button onClick={handleCart} className="btn btn-primary mt-auto">
                       Add to Cart
                     </button>
                   </div>
