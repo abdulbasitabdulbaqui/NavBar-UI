@@ -43,8 +43,8 @@ const Products = () => {
     // navigate("/cart");
     console.log(product);
     const prod = product;
-    const cardItems = localStorage.getItem("cardItems");
-    localStorage.setItem("cardItems", JSON.stringify[{ ...prod, cardItems }]);
+    const cardItems = JSON.parse(localStorage.getItem("cardItems"));
+    localStorage.setItem("cardItems", JSON.stringify({ ...cardItems, prod }));
   };
 
   useEffect(() => {
