@@ -24,7 +24,7 @@ const Cart = () => {
                 <p> From Saved Address</p>
               </div>
               <div>
-                <Button class="btn btn-light">Enter Delivery Pincode </Button>
+                <Button className="btn btn-light">Enter Delivery Pincode </Button>
               </div>
             </div>
             <hr />
@@ -58,10 +58,10 @@ const Cart = () => {
               </div>
               <div className="d-flex gap-3 ">
                 <div>
-                  <Button  class="btn btn-secondary">Save for later</Button>
+                  <Button className="btn btn-secondary">Save for later</Button>
                 </div>
                 <div>
-                  <Button class="btn btn-danger"  >Remove</Button>
+                  <Button className="btn btn-danger">Remove</Button>
                 </div>
               </div>
             </div>
@@ -82,12 +82,25 @@ const Cart = () => {
               <p>₹15,999</p>
               <p style={{ color: "green" }}>− ₹3,500</p>
               <p> ₹79</p>
-              <hr/>
-              
+              <hr />
+
               <h4>₹12,578</h4>
             </div>
           </div>
         </div>
+      </div>
+      <div  style={{backgroundColor:"silver"}} >
+      <footer className="d-flex justify-content-between m-3 p-1"  >
+        <div>
+          <p>Policies:Returns Policy | Terms of use | Security | Privacy</p>
+        </div>
+        <div>
+          <p>©2007-2025 E-commerce.com</p>
+        </div>
+        <div>
+          <p>Need help? Visit the Help Center or Contact Us</p>
+        </div>
+      </footer>
       </div>
     </div>
   );
