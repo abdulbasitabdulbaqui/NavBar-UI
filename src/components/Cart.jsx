@@ -11,6 +11,7 @@ const Cart = () => {
   const handleDecrement = () => {
     setCounter(counter - 1);
   };
+  
   return (
     <div className="container-fluid p-4">
       <div className="row">

@@ -45,6 +45,7 @@ const Home = () => {
       navigate("/login");
     }
   };
+
   const handleCart = () => {
     if (isLogin) {
       navigate("/products");
@@ -52,6 +53,7 @@ const Home = () => {
       navigate("/login");
     }
   };
+  
   return (
     <div>
       {/* Hero Banner */}
