@@ -28,28 +28,23 @@ const Cart = () => {
                     className="img-fluid"
                     style={{ height: "220px", objectFit: "cover" }}
                   />
-
                   <div>
                     <p className="fw-bold fs-5 mb-1">{items?.title}</p>
                     <p className="fw-bold fs-5 mb-0">${items?.price}</p>
                   </div>
                 </div>
-
                 {/* Quantity + Remove */}
                 <div className="d-flex align-items-center gap-4">
                   <div className="d-flex align-items-center gap-2">
                     <Button onClick={handleDecrement}>-</Button>
-
                     <div
                       className="border px-3 py-1 fw-bold"
                       style={{ minWidth: "40px", textAlign: "center" }}
                     >
                       {counter}
                     </div>
-
                     <Button onClick={handleIncrement}>+</Button>
                   </div>
-
                   <Button className="btn btn-danger">Remove</Button>
                 </div>
               </div>
