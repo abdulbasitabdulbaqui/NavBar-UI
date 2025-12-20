@@ -41,7 +41,7 @@ const Products = () => {
   };
   const handleCart = (product) => {
     // navigate("/cart");
-    console.log(product);
+    // console.log(product);
     const prod = product;
     const cardItems = JSON.parse(localStorage.getItem("cardItems")) || [];
     localStorage.setItem("cardItems", JSON.stringify([ ...cardItems, prod ]));
