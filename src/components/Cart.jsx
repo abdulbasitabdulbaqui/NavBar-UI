@@ -19,9 +19,9 @@ const Cart = () => {
 
   const handleDelete = (id,items) => {
     toast.error(`${items.title} is Deleted`);
-    const dt = products.filter((items) => items.id !== id);
+    const updatedProducts = products.filter((items) => items.id !== id);
     setProducts(dt);
-    localStorage.setItem("cardItems", JSON.stringify(dt));
+    localStorage.setItem("cardItems", JSON.stringify(updatedProducts));
   };
   return (
     <>
