@@ -8,6 +8,7 @@ const Cart = () => {
   const [products, setProducts] = useState(
     JSON.parse(localStorage.getItem("cardItems")) || []
   );
+
   const handleIncrement = () => {
     setCounter(counter + 1);
   };
@@ -17,28 +18,29 @@ const Cart = () => {
   };
   console.log("products", products);
 
-  const handleDelete = (id,items) => {
-    toast.error(`${items.title} is Deleted`);
-    const updatedProducts = products.filter((items) => items.id !== id);
+  const handleDelete = (id, item) => {
+    toast.error(`${item.title} is Deleted`);
+    const updatedProducts = products.filter((item) => item.id !== id);
     setProducts(dt);
     localStorage.setItem("cardItems", JSON.stringify(updatedProducts));
   };
+
   return (
     <>
-      {products.map((items, index) => (
+      {products.map((item, index) => (
         <div key={index} className="container-fluid p-4 bg-light">
           <div className="row">
             <div className="col-md-8">
               <div className="bg-white border rounded p-4">
                 <div className="d-flex align-items-start gap-4 mb-4">
                   <img
-                    src={items?.images[0]}
+                    src={item?.images[0]}
                     className="img-fluid"
                     style={{ height: "220px", objectFit: "cover" }}
                   />
                   <div>
-                    <p className="fw-bold fs-5 mb-1">{items?.title}</p>
-                    <p className="fw-bold fs-5 mb-0">${items?.price}</p>
+                    <p className="fw-bold fs-5 mb-1">{item?.title}</p>
+                    <p className="fw-bold fs-5 mb-0">${item?.price}</p>
                   </div>
                 </div>
                 {/* Quantity + Remove */}
@@ -54,7 +56,7 @@ const Cart = () => {
                     <Button onClick={handleIncrement}>+</Button>
                   </div>
                   <Button
-                    onClick={() => handleDelete(items.id,items)}
+                    onClick={() => handleDelete(item.id, item)}
                     className="btn btn-danger"
                   >
                     Remove
