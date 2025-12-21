@@ -6,7 +6,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import Loader from "./Loader";
 import "./products.css";
-
+import { toast } from "react-toastify";
 const Products = () => {
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -42,6 +42,10 @@ const Products = () => {
   const handleCart = (product) => {
     // navigate("/cart");
     // console.log(product);
+     toast.success(`${product.title} is Added`,
+      {
+  position: "top-right",
+ })
     const prod = product;
     const cardItems = JSON.parse(localStorage.getItem("cardItems")) || [];
     localStorage.setItem("cardItems", JSON.stringify([...cardItems, prod]));

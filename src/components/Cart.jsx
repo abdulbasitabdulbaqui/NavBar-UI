@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Button from "react-bootstrap/Button";
+import { toast } from "react-toastify";
 
 const Cart = () => {
   const [counter, setCounter] = useState(0);
@@ -16,7 +17,8 @@ const Cart = () => {
   };
   console.log("products", products);
 
-  const handleDelete = (id) => {
+  const handleDelete = (id,items) => {
+    toast.error(`${items.title} is Deleted`);
     const dt = products.filter((items) => items.id !== id);
     setProducts(dt);
     localStorage.setItem("cardItems", JSON.stringify(dt));
@@ -52,7 +54,7 @@ const Cart = () => {
                     <Button onClick={handleIncrement}>+</Button>
                   </div>
                   <Button
-                    onClick={() => handleDelete(items.id)}
+                    onClick={() => handleDelete(items.id,items)}
                     className="btn btn-danger"
                   >
                     Remove
