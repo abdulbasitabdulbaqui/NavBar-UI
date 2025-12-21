@@ -44,7 +44,7 @@ const Products = () => {
     // console.log(product);
     const prod = product;
     const cardItems = JSON.parse(localStorage.getItem("cardItems")) || [];
-    localStorage.setItem("cardItems", JSON.stringify([ ...cardItems, prod ]));
+    localStorage.setItem("cardItems", JSON.stringify([...cardItems, prod]));
   };
 
   useEffect(() => {

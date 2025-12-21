@@ -15,6 +15,12 @@ const Cart = () => {
     setCounter(counter - 1);
   };
   console.log("products", products);
+
+  const handleDelete = (id) => {
+    const dt = products.filter((items) => items.id !== id);
+    setProducts(dt);
+    localStorage.setItem("cardItems", JSON.stringify(dt));
+  };
   return (
     <>
       {products.map((items, index) => (
@@ -45,7 +51,12 @@ const Cart = () => {
                     </div>
                     <Button onClick={handleIncrement}>+</Button>
                   </div>
-                  <Button className="btn btn-danger">Remove</Button>
+                  <Button
+                    onClick={() => handleDelete(items.id)}
+                    className="btn btn-danger"
+                  >
+                    Remove
+                  </Button>
                 </div>
               </div>
             </div>
