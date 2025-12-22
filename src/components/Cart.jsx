@@ -9,19 +9,35 @@ const Cart = () => {
     JSON.parse(localStorage.getItem("cardItems")) || []
   );
 
-  const handleIncrement = () => {
-    setCounter(counter + 1);
+  const handleIncrement = (id) => {
+    const updateProducts = products.map((item) => {
+      if (item.id === id) {
+        item.quantity = item.quantity + 1;
+      }
+      return item   ;
+    });
+
+    localStorage.setItem("cardItems", JSON.stringify(updateProducts));
+    setCounter(updateProducts);
   };
 
-  const handleDecrement = () => {
-    setCounter(counter - 1);
+  const handleDecrement = (id) => {
+    const updatedProducts = products.map((item) => {
+      if (item.id === id && item.quantity > 1) {
+        item.quantity = item.quantity - 1;
+      }
+      return item;
+    });
+
+    localStorage.setItem("cardItems", JSON.stringify(updatedProducts));
+    setProducts(updatedProducts);
   };
   console.log("products", products);
 
   const handleDelete = (id, item) => {
-    toast.error(`${item.title} is Deleted`);
-    const updatedProducts = products.filter((item) => item.id !== id);
-    setProducts(dt);
+    toast.error(`${item?.title} is Deleted`);
+    const updatedProducts = products.filter((item) => item?.id !== id);
+    setProducts(updatedProducts);
     localStorage.setItem("cardItems", JSON.stringify(updatedProducts));
   };
 
@@ -46,14 +62,14 @@ const Cart = () => {
                 {/* Quantity + Remove */}
                 <div className="d-flex align-items-center gap-4">
                   <div className="d-flex align-items-center gap-2">
-                    <Button onClick={handleDecrement}>-</Button>
+                    <Button onClick={() => handleDecrement(item.id)}>-</Button>
                     <div
                       className="border px-3 py-1 fw-bold"
                       style={{ minWidth: "40px", textAlign: "center" }}
                     >
-                      {counter}
+                     {item.quantity}
                     </div>
-                    <Button onClick={handleIncrement}>+</Button>
+                    <Button onClick={() => handleIncrement(item.id)}>+</Button>
                   </div>
                   <Button
                     onClick={() => handleDelete(item.id, item)}

@@ -40,7 +40,7 @@ const Products = () => {
       setError("SOMETHING WENT WRONGE");
     }
   };
-  const handleCart = (product) => {
+  const   handleCart = (product) => {
     // navigate("/cart");
     // console.log(product);
     toast.success(`${product.title} is Added`, {
@@ -105,7 +105,7 @@ const Products = () => {
                 <span className="text-muted ms-2">({product.rating})</span>
                 <br />
               </Card.Body>
-              <Button onClick={() => handleCart(product)} variant="primary">
+              <Button onClick={() => handleCart({...product, quantity:1})} variant="primary">
                 Add to Cart
               </Button>
             </Card>
