@@ -12,7 +12,7 @@ const Cart = () => {
   const handleIncrement = (id) => {
     const updateProducts = products.map((item) => {
       if (item?.id === id) {
-        item?.quantity = item?.quantity + 1;
+        item.quantity = item.quantity + 1;
       }
       return item;
     });
@@ -20,17 +20,16 @@ const Cart = () => {
     setCounter(updateProducts);
   };
 
-const handleDecrement = (id) => {
-  const updatedProducts = products.map((item) => {
-    if (item?.id === id && item?.quantity > 1) {
-      item?.quantity = item?.qunatity - 1;
-    }
-    return item;
-  });
-  localStorage.setItem("cards", JSON.stringify(updatedProducts));
-  setCounter(updatedProducts);
-};
-;
+  const handleDecrement = (id) => {
+    const updatedProducts = products.map((item) => {
+      if (item?.id === id && item?.quantity > 1) {
+        item.quantity = item.qunatity - 1;
+      }
+      return item;
+    });
+    localStorage.setItem("cards", JSON.stringify(updatedProducts));
+    setCounter(updatedProducts);
+  };
   console.log("products", products);
 
   const handleDelete = (id, item) => {
@@ -66,7 +65,7 @@ const handleDecrement = (id) => {
                       className="border px-3 py-1 fw-bold"
                       style={{ minWidth: "40px", textAlign: "center" }}
                     >
-                     {item.quantity}
+                      {item.quantity}
                     </div>
                     <Button onClick={() => handleIncrement(item.id)}>+</Button>
                   </div>
