@@ -11,27 +11,26 @@ const Cart = () => {
 
   const handleIncrement = (id) => {
     const updateProducts = products.map((item) => {
-      if (item.id === id) {
-        item.quantity = item.quantity + 1;
-      }
-      return item   ;
-    });
-
-    localStorage.setItem("cardItems", JSON.stringify(updateProducts));
-    setCounter(updateProducts);
-  };
-
-  const handleDecrement = (id) => {
-    const updatedProducts = products.map((item) => {
-      if (item.id === id && item.quantity > 1) {
-        item.quantity = item.quantity - 1;
+      if (item?.id === id) {
+        item?.quantity = item?.quantity + 1;
       }
       return item;
     });
-
-    localStorage.setItem("cardItems", JSON.stringify(updatedProducts));
-    setProducts(updatedProducts);
+    localStorage.setItem("cards", JSON.stringify(updateProducts));
+    setCounter(updateProducts);
   };
+
+const handleDecrement = (id) => {
+  const updatedProducts = products.map((item) => {
+    if (item?.id === id && item?.quantity > 1) {
+      item?.quantity = item?.qunatity - 1;
+    }
+    return item;
+  });
+  localStorage.setItem("cards", JSON.stringify(updatedProducts));
+  setCounter(updatedProducts);
+};
+;
   console.log("products", products);
 
   const handleDelete = (id, item) => {
