@@ -1,15 +1,18 @@
 import React from "react";
-import { Image } from "react-bootstrap";
 import sinkImg from "../assets/sinkImg.jpg";
 import mateBook from "../assets/mateBook.jpg";
 import familyTree from "../assets/familyTree.jpg";
 import whey from "../assets/whey.png";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { toast } from "react-toastify";
 
 const Home = () => {
   const [isLogin, setIsLogIn] = useState(
     localStorage.getItem("isLogin") === "true"
+  );
+  const [items, setItems] = useState(
+    JSON.parse(localStorage.getItem("cardItems")) || []
   );
   // Sample product data - replace with actual data from your API/state
   const featuredProducts = [
@@ -46,14 +49,13 @@ const Home = () => {
     }
   };
 
-  const handleCart = () => {
-    if (isLogin) {
-      navigate("/products");
-    } else {
-      navigate("/login");
-    }
+  const handleCart = (product) => {
+    const prod = { ...product, quantity: 1 };
+    const cardItems = JSON.parse(localStorage.getItem("cardItems")) || [];
+    localStorage.setItem("cardItems", JSON.stringify([...cardItems, prod]));
+    toast.success(`${product.name} added to cart`);
   };
-  
+
   return (
     <div>
       {/* Hero Banner */}
@@ -122,7 +124,7 @@ const Home = () => {
                       ${product.price}
                     </p>
                     <button
-                      onClick={handleCart}
+                      onClick={() => handleCart(product)}
                       className="btn btn-primary mt-auto"
                     >
                       Add to Cart
