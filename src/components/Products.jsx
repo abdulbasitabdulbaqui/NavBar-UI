@@ -105,7 +105,10 @@ const Products = () => {
                 <span className="text-muted ms-2">({product.rating})</span>
                 <br />
               </Card.Body>
-              <Button onClick={() => handleCart(product)} variant="primary">
+              <Button
+                onClick={() => handleCart({ ...product, quantity: 1 })}
+                variant="primary"
+              >
                 Add to Cart
               </Button>
             </Card>

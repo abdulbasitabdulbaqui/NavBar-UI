@@ -76,7 +76,7 @@ export const NavBarCom = () => {
                 </Button>
               </>
             )}
-            \
+            
             <Nav.Link as={Link} to="/cart">
               {<Button style={{ marginRight: "20px" }}>Cart</Button>}
             </Nav.Link>

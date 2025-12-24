@@ -9,19 +9,33 @@ const Cart = () => {
     JSON.parse(localStorage.getItem("cardItems")) || []
   );
 
-  const handleIncrement = () => {
-    setCounter(counter + 1);
+  const handleIncrement = (id) => {
+    const updateProducts = products.map((item) => {
+      if (item?.id === id) {
+        item.quantity = (item.quantity || 1) + 1;
+      }
+      return item;
+    });
+    setProducts(updateProducts);
+    localStorage.setItem("cardItems", JSON.stringify(updateProducts));
   };
 
-  const handleDecrement = () => {
-    setCounter(counter - 1);
+  const handleDecrement = (id) => {
+    const updatedProducts = products.map((item) => {
+      if (item?.id === id && (item.quantity || 1) > 1) {
+        item.quantity = (item.quantity || 1) - 1;
+      }
+      return item;
+    });
+    setProducts(updatedProducts);
+    localStorage.setItem("cardItems", JSON.stringify(updatedProducts));
   };
   console.log("products", products);
 
   const handleDelete = (id, item) => {
-    toast.error(`${item.title} is Deleted`);
-    const updatedProducts = products.filter((item) => item.id !== id);
-    setProducts(dt);
+    toast.error(`${item?.title || item?.name} is Deleted`);
+    const updatedProducts = products.filter((item) => item?.id !== id);
+    setProducts(updatedProducts);
     localStorage.setItem("cardItems", JSON.stringify(updatedProducts));
   };
 
@@ -34,26 +48,28 @@ const Cart = () => {
               <div className="bg-white border rounded p-4">
                 <div className="d-flex align-items-start gap-4 mb-4">
                   <img
-                    src={item?.images[0]}
+                    src={item?.image || item?.thumbnail || item?.image}
                     className="img-fluid"
                     style={{ height: "220px", objectFit: "cover" }}
                   />
                   <div>
-                    <p className="fw-bold fs-5 mb-1">{item?.title}</p>
+                    <p className="fw-bold fs-5 mb-1">
+                      {item?.name || item?.title}
+                    </p>
                     <p className="fw-bold fs-5 mb-0">${item?.price}</p>
                   </div>
                 </div>
                 {/* Quantity + Remove */}
                 <div className="d-flex align-items-center gap-4">
                   <div className="d-flex align-items-center gap-2">
-                    <Button onClick={handleDecrement}>-</Button>
+                    <Button onClick={() => handleDecrement(item.id)}>-</Button>
                     <div
                       className="border px-3 py-1 fw-bold"
                       style={{ minWidth: "40px", textAlign: "center" }}
                     >
-                      {counter}
+                      {item.quantity}
                     </div>
-                    <Button onClick={handleIncrement}>+</Button>
+                    <Button onClick={() => handleIncrement(item.id)}>+</Button>
                   </div>
                   <Button
                     onClick={() => handleDelete(item.id, item)}
